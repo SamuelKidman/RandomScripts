@@ -1,14 +1,19 @@
+##Run in directory with "Haplotype Definitions" file
+
 from scipy.spatial.distance import squareform
 from scipy.spatial.distance import pdist
 import pandas as pd
 
-input_table = pd.read_csv("Haplotype_definitions.csv", index_col=0)
+input_table = pd.read_csv("Haplotype_definitions.csv", index_col=0) ##Define each haplotype as haplotype number down left,
+								##and phenotype across top. Takes any combination of numbers
+								##for the phenotype
 input_table2 = input_table
 
 #print(input_table, '\n')
 #print(input_table2, '\n')
 
-
+##This generates a pd dataframe with haplotype across top and down sides, that is used as a template
+##Future dev - inifnitely quicker to generate an empty dataframe, but I don't know how to do that.
 pairwise = pd.DataFrame(squareform(pdist(input_table)), columns = input_table.index, index = input_table.index)
 
 #print(pairwise, '\n')
